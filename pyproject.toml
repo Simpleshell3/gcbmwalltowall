@@ -1,0 +1,46 @@
+[project]
+name = "gcbmwalltowall"
+version = "2.5.1"
+description = "gcbmwalltowall"
+classifiers = ["Programming Language :: Python :: 3"]
+requires-python = ">=3.9"
+dependencies = [
+    "gcbminputloader",
+    "mojadata",
+    "openpyxl",
+    "pandas",
+    "spatial-inventory-rollback",
+    "sqlalchemy",
+    "sqlalchemy-access; platform_system == \"Windows\"",
+]
+
+[project.optional-dependencies]
+cbm4 = [
+    "cbm4",
+    "cbm4-canfire",
+    "arrow_space",
+    "cbmspec-cbm3",
+    "cbm_defaults",
+    "gdal<=3.11.3",
+]
+
+
+[project.scripts]
+walltowall = "gcbmwalltowall.application.walltowall:cli"
+
+[build-system]
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "gcbmwalltowall"
+module-root = "."
+
+[tool.uv.build-backend.data]
+data = "files"
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "pytest>=8.4.2",
+]
